@@ -20,20 +20,46 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 public class TestWithPageObject extends TestBase{
 
+    String email = "test@gmail.com";
+    String firstName = "Test";
+    String lastName = "Testov";
+    String gender = "Other";
+    int day = 18;
+    int month = 02;
+    int year = 2000;
+    
     RegistrationPages registrationPages =
             new RegistrationPages();
     @Test
-    void successfulRegistrationTest(){
+    void successfulRegistrationTest() {
         registrationPages.openPage()
-        .setFirstName("Test")
-        .setLastName("Testov")
-        .emailInput("test@gmail.com")
-        .setGender("Other")
-        .numberInput("77777777777")
-        //.setDateOfBirthday("18", "02", "2000");
-        .subjectsInput("E")
-                .hobbiesCheckBox()
-                .hobbiesCheckBox1()
-                .hobbiesCheckBox2();
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .emailInput(email)
+                .setGender(gender)
+                .numberInput("77777777777")
+                .setDateOfBirthday("18", "02", "2000")
+                .subjectsInput("E")
+                .hobbieInput("Music")
+                .uploadPicture("test.png")
+                .setAddress("gte-to")
+                .inputCity("NCR")
+                .inputState("Noida")
+                .submit();
+
+        // Проверяем, что модальное окно появилось
+        registrationPages.getResultsTableComponent().checkModalAppears();
+
+        // Проверяем значения, используя ResultsTableComponent
+        registrationPages.getResultsTableComponent().checkResult("Student Name", firstName + " " + lastName);
+        registrationPages.getResultsTableComponent().checkResult("Student Email", email);
+        registrationPages.getResultsTableComponent().checkResult("Gender", gender);
+        registrationPages.getResultsTableComponent().checkResult("Mobile", "7777777777");
+        registrationPages.getResultsTableComponent().checkResult("Date of Birth", "18 February,2000");
+        registrationPages.getResultsTableComponent().checkResult("Subjects", "English");
+        registrationPages.getResultsTableComponent().checkResult("Hobbies", "Music");
+        registrationPages.getResultsTableComponent().checkResult("Picture", "test.png");
+        registrationPages.getResultsTableComponent().checkResult("Address", "gte-to");
+        registrationPages.getResultsTableComponent().checkResult("State and City", "NCR Noida");
     }
 }
