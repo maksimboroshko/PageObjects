@@ -1,6 +1,5 @@
 package pages.component;
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -14,5 +13,8 @@ public class ResultsTableComponent {
     public void checkResult (String key, String value) {
         $(".modal-body .table-responsive").$(byText(key)).parent().shouldHave(text(value));
 
+    }
+    public void checkResultNegative() {
+        $(".modal-body .table-responsive").shouldNot(visible);
     }
 }

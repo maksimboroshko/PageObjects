@@ -62,4 +62,30 @@ public class TestWithPageObject extends TestBase{
         registrationPages.getResultsTableComponent().checkResult("Address", "gte-to");
         registrationPages.getResultsTableComponent().checkResult("State and City", "NCR Noida");
     }
+
+    @Test
+    void minCountPositiveTest (){
+        registrationPages.openPage()
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setGender(gender)
+                .numberInput("77777777777")
+                .submit();
+
+        registrationPages.getResultsTableComponent().checkModalAppears();
+
+        registrationPages.getResultsTableComponent().checkResult("Student Name", firstName + " " + lastName);
+        registrationPages.getResultsTableComponent().checkResult("Gender", gender);
+        registrationPages.getResultsTableComponent().checkResult("Mobile", "7777777777");
+    }
+    @Test
+    void negaitiveTest (){
+        registrationPages.openPage()
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setGender(gender)
+                .submit();
+
+        registrationPages.getResultsTableComponent().checkResultNegative();
+    }
 }
