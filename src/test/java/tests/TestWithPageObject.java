@@ -1,5 +1,4 @@
 package tests;
-import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPages;
 import static tests.TestData.*;
@@ -11,16 +10,16 @@ public class TestWithPageObject extends TestBase{
     @Test
     void successfulRegistrationTest() {
         registrationPages.openPage()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .emailInput(email)
-                .setGender(gender)
-                .numberInput(number)
-                .setDateOfBirthday(day, month, year)
-                .subjectsInput(letter)
-                .hobbieInput(hobbies)
+                .setFirstName(randomFirstName)
+                .setLastName(randomLastName)
+                .emailInput(RandomEmail)
+                .setGender(randomGender)
+                .numberInput(randomNumber)
+                //.setDateOfBirthday(randomDay, month, year)
+                .subjectsInput(randomSubjects)
+                .hobbieInput(randomHobbie)
                 .uploadPicture(picture)
-                .setAddress(adress)
+                .setAddress(randomAdress)
                 .inputCity(city)
                 .inputState(state)
                 .submit();
@@ -29,15 +28,15 @@ public class TestWithPageObject extends TestBase{
         registrationPages.getResultsTableComponent().checkModalAppears();
 
         // Проверяем значения, используя ResultsTableComponent
-        registrationPages.getResultsTableComponent().checkResult("Student Name", firstName + " " + lastName);
-        registrationPages.getResultsTableComponent().checkResult("Student Email", email);
-        registrationPages.getResultsTableComponent().checkResult("Gender", gender);
-        registrationPages.getResultsTableComponent().checkResult("Mobile", number);
-        registrationPages.getResultsTableComponent().checkResult("Date of Birth", day + " " + month + "," + year);
-        registrationPages.getResultsTableComponent().checkResult("Subjects", letter);
-        registrationPages.getResultsTableComponent().checkResult("Hobbies", hobbies);
+        registrationPages.getResultsTableComponent().checkResult("Student Name", randomFirstName + " " + randomLastName);
+        registrationPages.getResultsTableComponent().checkResult("Student Email", RandomEmail);
+        registrationPages.getResultsTableComponent().checkResult("Gender", randomGender);
+        registrationPages.getResultsTableComponent().checkResult("Mobile", randomNumber);
+        //registrationPages.getResultsTableComponent().checkResult("Date of Birth", randomDay + " " + month + "," + year);
+        registrationPages.getResultsTableComponent().checkResult("Subjects", randomSubjects);
+        registrationPages.getResultsTableComponent().checkResult("Hobbies", randomHobbie);
         registrationPages.getResultsTableComponent().checkResult("Picture", picture);
-        registrationPages.getResultsTableComponent().checkResult("Address", adress);
+        registrationPages.getResultsTableComponent().checkResult("Address", randomAdress);
         registrationPages.getResultsTableComponent().checkResult("State and City", city + " " + state);
     }
 

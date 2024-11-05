@@ -1,19 +1,27 @@
 package tests;
 
+import utils.RandomUtils;
+
 public class TestData {
     public static String
-            email = "test@gmail.com",
-     firstName = "Test",
-      lastName = "Testov",
-            gender = "Other",
+            RandomEmail = RandomUtils.generateRandomEmail(),
+            randomFirstName = RandomUtils.generateRandomFirstName(),
+            randomLastName = RandomUtils.generateRandomLastName(),
+            randomNumber = RandomUtils.generateRandomNumber(),
+
+            randomGender = RandomUtils.generateRandomGender(),
+            randomDay = RandomUtils.generateRandomDayAsString(),
+randomSubjects = RandomUtils.generateRandomSubject(),
+    randomHobbie = RandomUtils.generateRandomHobbies(),
+
+                    randomAdress = RandomUtils.generateRandomAdress(10),
+
     letter = "English",
     hobbies = "Music",
     picture = "test.png",
     adress = "gde-to",
     city = "ncr",
     state = "noida",
-            number = "7777777777",
-            day = "18",
             month = "February",
             year = "2000";
 }

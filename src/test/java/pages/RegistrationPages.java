@@ -14,6 +14,7 @@ public class RegistrationPages {
             emailInput = $("#userEmail"),
             numberInput = $("#userNumber"),
             setGender = $("#genterWrapper"),
+
             calendarInput = $("#dateOfBirthInput"),
             subjectsInput = $("#subjectsInput"),
             hobbieInput = $("#hobbiesWrapper"),

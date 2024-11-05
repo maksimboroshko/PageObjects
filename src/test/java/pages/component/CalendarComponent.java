@@ -8,6 +8,7 @@ public class CalendarComponent {
         $("#dateOfBirthInput").click();
        $(".react-datepicker__month-select").$(byText("February")).click();
             $(".react-datepicker__year-select").$(byText("2000")).click();
-            $(".react-datepicker__day.react-datepicker__day--018").click();
+        String daySelector = (day.length() == 1 ? "0" : "") + day;
+        $(".react-datepicker__day.react-datepicker__day--" + daySelector).click();
 }
 }
