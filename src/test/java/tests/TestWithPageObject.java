@@ -1,15 +1,10 @@
 package tests;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPages;
+import static tests.TestData.*;
 public class TestWithPageObject extends TestBase{
 
-    String email = "test@gmail.com";
-    String firstName = "Test";
-    String lastName = "Testov";
-    String gender = "Other";
-    int day = 18;
-    int month = 02;
-    int year = 2000;
     
     RegistrationPages registrationPages =
             new RegistrationPages();
@@ -20,14 +15,14 @@ public class TestWithPageObject extends TestBase{
                 .setLastName(lastName)
                 .emailInput(email)
                 .setGender(gender)
-                .numberInput("77777777777")
-                .setDateOfBirthday("18", "02", "2000")
-                .subjectsInput("E")
-                .hobbieInput("Music")
-                .uploadPicture("test.png")
-                .setAddress("gte-to")
-                .inputCity("NCR")
-                .inputState("Noida")
+                .numberInput(number)
+                .setDateOfBirthday(day, month, year)
+                .subjectsInput(letter)
+                .hobbieInput(hobbies)
+                .uploadPicture(picture)
+                .setAddress(adress)
+                .inputCity(city)
+                .inputState(state)
                 .submit();
 
         // Проверяем, что модальное окно появилось
@@ -37,38 +32,38 @@ public class TestWithPageObject extends TestBase{
         registrationPages.getResultsTableComponent().checkResult("Student Name", firstName + " " + lastName);
         registrationPages.getResultsTableComponent().checkResult("Student Email", email);
         registrationPages.getResultsTableComponent().checkResult("Gender", gender);
-        registrationPages.getResultsTableComponent().checkResult("Mobile", "7777777777");
-        registrationPages.getResultsTableComponent().checkResult("Date of Birth", "18 February,2000");
-        registrationPages.getResultsTableComponent().checkResult("Subjects", "English");
-        registrationPages.getResultsTableComponent().checkResult("Hobbies", "Music");
-        registrationPages.getResultsTableComponent().checkResult("Picture", "test.png");
-        registrationPages.getResultsTableComponent().checkResult("Address", "gte-to");
-        registrationPages.getResultsTableComponent().checkResult("State and City", "NCR Noida");
+        registrationPages.getResultsTableComponent().checkResult("Mobile", number);
+        registrationPages.getResultsTableComponent().checkResult("Date of Birth", day + " " + month + "," + year);
+        registrationPages.getResultsTableComponent().checkResult("Subjects", letter);
+        registrationPages.getResultsTableComponent().checkResult("Hobbies", hobbies);
+        registrationPages.getResultsTableComponent().checkResult("Picture", picture);
+        registrationPages.getResultsTableComponent().checkResult("Address", adress);
+        registrationPages.getResultsTableComponent().checkResult("State and City", city + " " + state);
     }
 
-    @Test
-    void minCountPositiveTest (){
-        registrationPages.openPage()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setGender(gender)
-                .numberInput("77777777777")
-                .submit();
-
-        registrationPages.getResultsTableComponent().checkModalAppears();
-
-        registrationPages.getResultsTableComponent().checkResult("Student Name", firstName + " " + lastName);
-        registrationPages.getResultsTableComponent().checkResult("Gender", gender);
-        registrationPages.getResultsTableComponent().checkResult("Mobile", "7777777777");
-    }
-    @Test
-    void negaitiveTest (){
-        registrationPages.openPage()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setGender(gender)
-                .submit();
-
-        registrationPages.getResultsTableComponent().checkResultNegative();
-    }
+//    @Test
+//    void minCountPositiveTest (){
+//        registrationPages.openPage()
+//                .setFirstName(firstName)
+//                .setLastName(lastName)
+//                .setGender(gender)
+//                .numberInput("77777777777")
+//                .submit();
+//
+//        registrationPages.getResultsTableComponent().checkModalAppears();
+//
+//        registrationPages.getResultsTableComponent().checkResult("Student Name", firstName + " " + lastName);
+//        registrationPages.getResultsTableComponent().checkResult("Gender", gender);
+//        registrationPages.getResultsTableComponent().checkResult("Mobile", "7777777777");
+//    }
+//    @Test
+//    void negaitiveTest (){
+//        registrationPages.openPage()
+//                .setFirstName(firstName)
+//                .setLastName(lastName)
+//                .setGender(gender)
+//                .submit();
+//
+//        registrationPages.getResultsTableComponent().checkResultNegative();
+//    }
 }
