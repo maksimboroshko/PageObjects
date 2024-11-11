@@ -10,59 +10,60 @@ public class TestWithPageObject extends TestBase{
     @Test
     void successfulRegistrationTest() {
         registrationPages.openPage()
+                .removeBanners()
                 .setFirstName(randomFirstName)
                 .setLastName(randomLastName)
-                .emailInput(RandomEmail)
+                .setEmail(randomEmail)
                 .setGender(randomGender)
-                .numberInput(randomNumber)
-                //.setDateOfBirthday(randomDay, month, year)
-                .subjectsInput(randomSubjects)
-                .hobbieInput(randomHobbie)
+                .setNumber(randomNumber)
+                .setDateOfBirthday(18,"February",02)
+                .setSubjects(randomSubjects)
+                .setHobbies(randomHobbie)
                 .uploadPicture(picture)
                 .setAddress(randomAdress)
-                .inputCity(city)
-                .inputState(state)
+                .setState(state)
+                .setCity(city)
                 .submit();
 
         // Проверяем, что модальное окно появилось
         registrationPages.getResultsTableComponent().checkModalAppears();
 
-        // Проверяем значения, используя ResultsTableComponent
+        //Проверяем значения, используя ResultsTableComponent
         registrationPages.getResultsTableComponent().checkResult("Student Name", randomFirstName + " " + randomLastName);
-        registrationPages.getResultsTableComponent().checkResult("Student Email", RandomEmail);
+        registrationPages.getResultsTableComponent().checkResult("Student Email", randomEmail);
         registrationPages.getResultsTableComponent().checkResult("Gender", randomGender);
         registrationPages.getResultsTableComponent().checkResult("Mobile", randomNumber);
-        //registrationPages.getResultsTableComponent().checkResult("Date of Birth", randomDay + " " + month + "," + year);
+        registrationPages.getResultsTableComponent().checkResult("Date of Birth", 18 + "February" +  " ," + 02);
         registrationPages.getResultsTableComponent().checkResult("Subjects", randomSubjects);
         registrationPages.getResultsTableComponent().checkResult("Hobbies", randomHobbie);
         registrationPages.getResultsTableComponent().checkResult("Picture", picture);
         registrationPages.getResultsTableComponent().checkResult("Address", randomAdress);
-        registrationPages.getResultsTableComponent().checkResult("State and City", city + " " + state);
+        registrationPages.getResultsTableComponent().checkResult("State and City", randomCity + " " + randomState);
     }
 
-//    @Test
-//    void minCountPositiveTest (){
-//        registrationPages.openPage()
-//                .setFirstName(firstName)
-//                .setLastName(lastName)
-//                .setGender(gender)
-//                .numberInput("77777777777")
-//                .submit();
-//
-//        registrationPages.getResultsTableComponent().checkModalAppears();
-//
-//        registrationPages.getResultsTableComponent().checkResult("Student Name", firstName + " " + lastName);
-//        registrationPages.getResultsTableComponent().checkResult("Gender", gender);
-//        registrationPages.getResultsTableComponent().checkResult("Mobile", "7777777777");
-//    }
-//    @Test
-//    void negaitiveTest (){
-//        registrationPages.openPage()
-//                .setFirstName(firstName)
-//                .setLastName(lastName)
-//                .setGender(gender)
-//                .submit();
-//
-//        registrationPages.getResultsTableComponent().checkResultNegative();
-//    }
+    @Test
+    void minCountPositiveTest (){
+        registrationPages.openPage()
+                .setFirstName(randomFirstName)
+                .setLastName(randomLastName)
+                .setGender(randomGender)
+                .setNumber(randomNumber)
+                .submit();
+
+        registrationPages.getResultsTableComponent().checkModalAppears();
+
+        registrationPages.getResultsTableComponent().checkResult("Student Name", randomFirstName + " " + randomLastName);
+        registrationPages.getResultsTableComponent().checkResult("Gender", randomGender);
+        registrationPages.getResultsTableComponent().checkResult("Mobile", randomNumber);
+    }
+    @Test
+    void negaitiveTest (){
+        registrationPages.openPage()
+                .setFirstName(randomFirstName)
+                .setLastName(randomLastName)
+                .setGender(randomGender)
+                .submit();
+
+        registrationPages.getResultsTableComponent().checkResultNegative();
+    }
 }
