@@ -3,10 +3,22 @@ package utils;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 public class RandomUtils {
     private static final Faker FAKER = new Faker(new Locale("en-gb"));
+
+    private static final String[] imageFiles = {"test.png", "test1.png"};
+    public static int getRandomInt(int min, int max) {
+        return FAKER.number().numberBetween(min, max);
+    }
+
+
 
     @Test
     void randomDatesFaker() {
@@ -32,10 +44,16 @@ public class RandomUtils {
         return faker.internet().emailAddress();
     }
 
-    public static String generateRandomNumber() {
-        Faker faker = new Faker(new Locale("ru-ru"));
-        return faker.phoneNumber().phoneNumber();
+    public static String getRandomNumber() {
+        return String.format("+%s (%s) %s - %s - %s",
+                String.valueOf(getRandomInt(1, 9)),
+                String.valueOf(getRandomInt(111, 999)),
+                String.valueOf(getRandomInt(111, 999)),
+                String.valueOf(getRandomInt(11, 99)),
+                String.valueOf(getRandomInt(11, 99))
+        );
     }
+
 
     public static String generateRandomGender() {
         return FAKER.options().option("Male", "Female", "Other");
@@ -44,6 +62,16 @@ public class RandomUtils {
     public static String generateRandomDayAsString() {
         int randomDay = FAKER.number().numberBetween(1, 31);
         return String.valueOf(randomDay);
+    }
+
+    public static String generateRandomMonth() {
+        String[] months = {"January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"};
+        return months[FAKER.number().numberBetween(0, months.length)];
+    }
+
+    public static int generateRandomYear(int startYear, int endYear) {
+        return FAKER.number().numberBetween(startYear, endYear);
     }
     public static String generateRandomAdress(int length) {
         return FAKER.lorem().fixedString(length);  // Генерация случайной строки фиксированной длины
@@ -72,6 +100,11 @@ public class RandomUtils {
     public static String getRandomCity(String state) {
         List<String> cities = options.get(state);
         return cities.get(faker.random().nextInt(cities.size()));
+    }
+    public static Path getRandomImagePath() {
+        Random random = new Random();
+        String randomImage = imageFiles[random.nextInt(imageFiles.length)];
+        return Paths.get("src/test/resources/images/" + randomImage);
     }
 
 }

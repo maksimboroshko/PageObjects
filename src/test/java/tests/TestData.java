@@ -13,17 +13,14 @@ public class TestData {
             randomEmail = RandomUtils.generateRandomEmail(),
             randomFirstName = RandomUtils.generateRandomFirstName(),
             randomLastName = RandomUtils.generateRandomLastName(),
-            randomNumber = RandomUtils.generateRandomNumber(),
+            randomNumber = RandomUtils.getRandomNumber(),
             randomGender = RandomUtils.generateRandomGender(),
             randomDay = RandomUtils.generateRandomDayAsString(),
 randomSubjects = RandomUtils.generateRandomSubject(),
     randomHobbie = RandomUtils.generateRandomHobbies(),
     randomAdress = RandomUtils.generateRandomAdress(10),
             randomState = RandomUtils.getRandomState(),
-      randomCity = RandomUtils.getRandomCity(randomState),
-            city = "ncr",
-            state = "noida",
-            picture  = "test.png";
+      randomCity = RandomUtils.getRandomCity(randomState);
 
     private static final List<String> months = List.of(
             "January", "February", "March", "April", "May", "June",

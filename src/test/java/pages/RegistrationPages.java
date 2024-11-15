@@ -76,7 +76,7 @@ public class RegistrationPages {
     }
 
     public RegistrationPages uploadPicture(String value) {
-        uploadPicture.uploadFromClasspath("test.png");
+        uploadPicture.uploadFromClasspath("images/test.png");
         return this;
     }
 
@@ -85,15 +85,20 @@ public class RegistrationPages {
         return this;
     }
 
-    public RegistrationPages setState(String value) {
-        setState.setValue(value).pressEnter();
+    public RegistrationPages setState(String state) {
+        setState.click();
+        setState.$(byText(state)).click();
+
         return this;
     }
 
-    public RegistrationPages setCity(String value) {
-        setCity.setValue(value).pressEnter();
+    public RegistrationPages setCity(String city) {
+        setCity.click();
+        setCity.$(byText(city)).click();
+
         return this;
     }
+
 
     public RegistrationPages submit() {
         submit.click();
@@ -102,12 +107,11 @@ public class RegistrationPages {
 
     public RegistrationPages setDateOfBirthday(int day, String month, int year) {
         setCalendar.click();
-        calendarComponent.setDate("18", "02", "2000");
+        calendarComponent.setDate(String.valueOf(day), month, String.valueOf(year));
         return this;
     }
     public ResultsTableComponent getResultsTableComponent() {
         return resultsTableComponent;
     }
-
 }
 
