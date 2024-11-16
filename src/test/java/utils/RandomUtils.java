@@ -1,110 +1,74 @@
 package utils;
 
 import com.github.javafaker.Faker;
-import org.junit.jupiter.api.Test;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 public class RandomUtils {
-    private static final Faker FAKER = new Faker(new Locale("en-gb"));
 
-    private static final String[] imageFiles = {"test.png", "test1.png"};
-    public static int getRandomInt(int min, int max) {
-        return FAKER.number().numberBetween(min, max);
-    }
+    Faker faker = new Faker(new Locale("en-gb"));
 
-
-
-    @Test
-    void randomDatesFaker() {
-        Faker faker = new Faker(new Locale("en-gb"));
-        String ima = faker.name().fullName();
-        String firstName = faker.name().firstName();
-        String lastName = faker.name().lastName();
-        String streetAddress = faker.address().streetAddress();
-    }
-
-    public static String generateRandomFirstName() {
-        Faker faker = new Faker(new Locale("en-gb"));
+    public String generateRandomFirstName() {
         return faker.name().firstName();
     }
 
-    public static String generateRandomLastName() {
-        Faker faker = new Faker(new Locale("en-gb"));
+    public String generateRandomLastName() {
         return faker.name().lastName();
     }
 
-    public static String generateRandomEmail() {
-        Faker faker = new Faker(new Locale("en-gb"));
+    public String generateRandomEmail() {
         return faker.internet().emailAddress();
     }
 
-    public static String getRandomNumber() {
-        return String.format("+%s (%s) %s - %s - %s",
-                String.valueOf(getRandomInt(1, 9)),
-                String.valueOf(getRandomInt(111, 999)),
-                String.valueOf(getRandomInt(111, 999)),
-                String.valueOf(getRandomInt(11, 99)),
-                String.valueOf(getRandomInt(11, 99))
-        );
+    public String getRandomNumber() {
+        return faker.phoneNumber().subscriberNumber(10);
     }
 
-
-    public static String generateRandomGender() {
-        return FAKER.options().option("Male", "Female", "Other");
+    public String generateRandomGender() {
+        return faker.options().option("Male", "Female", "Other");
     }
 
-    public static String generateRandomDayAsString() {
-        int randomDay = FAKER.number().numberBetween(1, 31);
-        return String.valueOf(randomDay);
+    public String generateRandomPicture() {
+        return faker.options().option("images/test.png", "images/test1.png");
     }
 
-    public static String generateRandomMonth() {
-        String[] months = {"January", "February", "March", "April", "May", "June",
-                "July", "August", "September", "October", "November", "December"};
-        return months[FAKER.number().numberBetween(0, months.length)];
+    public String generateRandomDay() {
+        return String.valueOf(faker.number().numberBetween(1, 28));
     }
 
-    public static int generateRandomYear(int startYear, int endYear) {
-        return FAKER.number().numberBetween(startYear, endYear);
-    }
-    public static String generateRandomAdress(int length) {
-        return FAKER.lorem().fixedString(length);  // Генерация случайной строки фиксированной длины
+    public String generateRandomMonth() {
+        return faker.options().option("January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December");
     }
 
-    public static String generateRandomSubject() {
+    public String generateRandomYear() {
+        return String.valueOf(faker.number().numberBetween(1990, 2024));
 
-        return FAKER.options().option("Arts", "English", "Hindi");
-    }
-    public static String generateRandomHobbies() {
-        return FAKER.options().option("Sports", "Reading", "Music");
-    }
-    public static final Faker faker = new Faker();
-
-    private static final Map<String, List<String>> options = new HashMap<>() {{
-        put("NCR", Arrays.asList("Delhi", "Gurgaon", "Noida"));
-        put("Rajasthan", Arrays.asList("Jaipur", "Jaiselmer"));
-        put("Haryana", Arrays.asList("Karnal", "Panipat"));
-        put("Uttar Pradesh", Arrays.asList("Lucknow", "Merrut", "Agra"));
-    }};
-    public static String getRandomState() {
-        List<String> leftOptions = new ArrayList<>(options.keySet());
-        return leftOptions.get(faker.random().nextInt(leftOptions.size()));
     }
 
-    public static String getRandomCity(String state) {
-        List<String> cities = options.get(state);
-        return cities.get(faker.random().nextInt(cities.size()));
-    }
-    public static Path getRandomImagePath() {
-        Random random = new Random();
-        String randomImage = imageFiles[random.nextInt(imageFiles.length)];
-        return Paths.get("src/test/resources/images/" + randomImage);
+    public String generateRandomAdress() {
+        return faker.address().streetAddress();
     }
 
+    public String generateRandomSubject() {
+        return faker.options().option("Arts", "English", "Hindi");
+    }
+
+    public String generateRandomHobbies() {
+        return faker.options().option("Sports", "Reading", "Music");
+    }
+
+    public String generateRandomState() {
+        return faker.options().option("NCR", "Rajasthan", "Haryana", "Uttar Pradesh");
+    }
+
+    public String generateRandomCity(String state) {
+        return switch (state) {
+            case "NCR" -> faker.options().option("Delhi", "Gurgaon", "Noida");
+            case "Uttar Pradesh" -> faker.options().option("Lucknow", "Merrut", "Agra");
+            case "Haryana" -> faker.options().option("Panipap", "Karnal");
+            case "Rajasthan" -> faker.options().option("Jaipur", "Jaisalmer");
+            default -> "";
+        };
+    }
 }

@@ -1,10 +1,11 @@
 package pages;
+
 import com.codeborne.selenide.SelenideElement;
 import pages.component.CalendarComponent;
 import pages.component.ResultsTableComponent;
+
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class RegistrationPages {
 
@@ -15,15 +16,15 @@ public class RegistrationPages {
             setNumber = $("#userNumber"),
             setGender = $("#genterWrapper"),
 
-            setCalendar = $("#dateOfBirthInput"),
+    setCalendar = $("#dateOfBirthInput"),
             setSubjects = $("#subjectsInput"),
             setHobbies = $("#hobbiesWrapper"),
             uploadPicture = $("#uploadPicture"),
             setAddress = $("#currentAddress"),
-                    setState = $("#state"),
-                    setCity = $("#city"),
+            setState = $("#state"),
+            setCity = $("#city"),
 
-            submit = $("#submit");
+    submit = $("#submit");
 
 
     CalendarComponent calendarComponent = new CalendarComponent();
@@ -50,12 +51,18 @@ public class RegistrationPages {
         return this;
     }
 
+    public RegistrationPages uploadPicture(String path) {
+        uploadPicture.uploadFromClasspath(path);
+
+        return this;
+    }
+
     public RegistrationPages setEmail(String value) {
         setEmail.setValue(value);
         return this;
     }
 
-      public RegistrationPages setNumber(String value) {
+    public RegistrationPages setNumber(String value) {
         setNumber.setValue(value);
         return this;
     }
@@ -72,11 +79,6 @@ public class RegistrationPages {
 
     public RegistrationPages setHobbies(String value) {
         setHobbies.$(byText(value)).click();
-        return this;
-    }
-
-    public RegistrationPages uploadPicture(String value) {
-        uploadPicture.uploadFromClasspath("images/test.png");
         return this;
     }
 
@@ -105,11 +107,12 @@ public class RegistrationPages {
         return this;
     }
 
-    public RegistrationPages setDateOfBirthday(int day, String month, int year) {
+    public RegistrationPages setDateOfBirthday(String day, String month, String year) {
         setCalendar.click();
-        calendarComponent.setDate(String.valueOf(day), month, String.valueOf(year));
+        calendarComponent.setDate(day, month, year);
         return this;
     }
+
     public ResultsTableComponent getResultsTableComponent() {
         return resultsTableComponent;
     }
