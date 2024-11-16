@@ -1,11 +1,11 @@
 package tests;
 import org.junit.jupiter.api.Test;
-import pages.RegistrationPages;
+import pages.RegistrationPage;
 import utils.RandomUtils;
 
 public class TestWithPageObject extends TestBase {
-    RegistrationPages registrationPages =
-            new RegistrationPages();
+    RegistrationPage registrationPage =
+            new RegistrationPage();
 
     RandomUtils randomUtils = new RandomUtils();
     String firstName = randomUtils.generateRandomFirstName();
@@ -26,7 +26,7 @@ public class TestWithPageObject extends TestBase {
 
     @Test
     void successfulRegistrationTest() {
-        registrationPages.openPage()
+        registrationPage.openPage()
                 .removeBanners()
                 .setFirstName(firstName)
                 .setLastName(lastName)
@@ -43,44 +43,44 @@ public class TestWithPageObject extends TestBase {
                 .submit();
 
         // Проверяем, что модальное окно появилось
-        registrationPages.getResultsTableComponent().checkModalAppears();
+        registrationPage.getResultsTableComponent().checkModalAppears();
 
         //Проверяем значения, используя ResultsTableComponent
-        registrationPages.getResultsTableComponent().checkResult("Student Name", firstName + " " + lastName);
-        registrationPages.getResultsTableComponent().checkResult("Student Email", emailAddress);
-        registrationPages.getResultsTableComponent().checkResult("Gender", gender);
-        registrationPages.getResultsTableComponent().checkResult("Mobile", subscriberNumber);
-        registrationPages.getResultsTableComponent().checkResult("Date of Birth", day + " " + month + "," + year);
-        registrationPages.getResultsTableComponent().checkResult("Subjects", subject);
-        registrationPages.getResultsTableComponent().checkResult("Hobbies", hobbie);
-        registrationPages.getResultsTableComponent().checkResult("Picture", picture);
-        registrationPages.getResultsTableComponent().checkResult("Address", adress);
-        registrationPages.getResultsTableComponent().checkResult("State and City", state + " " + city);
+        registrationPage.getResultsTableComponent().checkResult("Student Name", firstName + " " + lastName);
+        registrationPage.getResultsTableComponent().checkResult("Student Email", emailAddress);
+        registrationPage.getResultsTableComponent().checkResult("Gender", gender);
+        registrationPage.getResultsTableComponent().checkResult("Mobile", subscriberNumber);
+        registrationPage.getResultsTableComponent().checkResult("Date of Birth", day + " " + month + "," + year);
+        registrationPage.getResultsTableComponent().checkResult("Subjects", subject);
+        registrationPage.getResultsTableComponent().checkResult("Hobbies", hobbie);
+        registrationPage.getResultsTableComponent().checkResult("Picture", picture);
+        registrationPage.getResultsTableComponent().checkResult("Address", adress);
+        registrationPage.getResultsTableComponent().checkResult("State and City", state + " " + city);
     }
 
     @Test
     void minCountPositiveTest (){
-        registrationPages.openPage()
+        registrationPage.openPage()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setGender(gender)
                 .setNumber(subscriberNumber)
                 .submit();
 
-        registrationPages.getResultsTableComponent().checkModalAppears();
+        registrationPage.getResultsTableComponent().checkModalAppears();
 
-        registrationPages.getResultsTableComponent().checkResult("Student Name", firstName + " " + lastName);
-        registrationPages.getResultsTableComponent().checkResult("Gender", gender);
-        registrationPages.getResultsTableComponent().checkResult("Mobile", subscriberNumber);
+        registrationPage.getResultsTableComponent().checkResult("Student Name", firstName + " " + lastName);
+        registrationPage.getResultsTableComponent().checkResult("Gender", gender);
+        registrationPage.getResultsTableComponent().checkResult("Mobile", subscriberNumber);
     }
     @Test
     void negaitiveTest (){
-        registrationPages.openPage()
+        registrationPage.openPage()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setGender(gender)
                 .submit();
 
-        registrationPages.getResultsTableComponent().checkResultNegative();
+        registrationPage.getResultsTableComponent().checkResultNegative();
     }
 }

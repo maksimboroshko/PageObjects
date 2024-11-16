@@ -7,7 +7,7 @@ import pages.component.ResultsTableComponent;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class RegistrationPages {
+public class RegistrationPage {
 
     private static SelenideElement
             setFirstName = $("#firstName"),
@@ -30,71 +30,71 @@ public class RegistrationPages {
     CalendarComponent calendarComponent = new CalendarComponent();
     ResultsTableComponent resultsTableComponent = new ResultsTableComponent();
 
-    public RegistrationPages openPage() {
+    public RegistrationPage openPage() {
         open("automation-practice-form");
         return this;
     }
 
-    public RegistrationPages removeBanners() {
+    public RegistrationPage removeBanners() {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         return this;
     }
 
-    public RegistrationPages setFirstName(String value) {
+    public RegistrationPage setFirstName(String value) {
         setFirstName.setValue(value);
         return this;
     }
 
-    public RegistrationPages setLastName(String value) {
+    public RegistrationPage setLastName(String value) {
         setLastName.setValue(value);
         return this;
     }
 
-    public RegistrationPages uploadPicture(String path) {
+    public RegistrationPage uploadPicture(String path) {
         uploadPicture.uploadFromClasspath(path);
 
         return this;
     }
 
-    public RegistrationPages setEmail(String value) {
+    public RegistrationPage setEmail(String value) {
         setEmail.setValue(value);
         return this;
     }
 
-    public RegistrationPages setNumber(String value) {
+    public RegistrationPage setNumber(String value) {
         setNumber.setValue(value);
         return this;
     }
 
-    public RegistrationPages setGender(String value) {
+    public RegistrationPage setGender(String value) {
         setGender.$(byText(value)).click();
         return this;
     }
 
-    public RegistrationPages setSubjects(String value) {
+    public RegistrationPage setSubjects(String value) {
         setSubjects.setValue(value).pressEnter();
         return this;
     }
 
-    public RegistrationPages setHobbies(String value) {
+    public RegistrationPage setHobbies(String value) {
         setHobbies.$(byText(value)).click();
         return this;
     }
 
-    public RegistrationPages setAddress(String value) {
+    public RegistrationPage setAddress(String value) {
         setAddress.setValue(value);
         return this;
     }
 
-    public RegistrationPages setState(String state) {
+    public RegistrationPage setState(String state) {
         setState.click();
         setState.$(byText(state)).click();
 
         return this;
     }
 
-    public RegistrationPages setCity(String city) {
+    public RegistrationPage setCity(String city) {
         setCity.click();
         setCity.$(byText(city)).click();
 
@@ -102,12 +102,12 @@ public class RegistrationPages {
     }
 
 
-    public RegistrationPages submit() {
+    public RegistrationPage submit() {
         submit.click();
         return this;
     }
 
-    public RegistrationPages setDateOfBirthday(String day, String month, String year) {
+    public RegistrationPage setDateOfBirthday(String day, String month, String year) {
         setCalendar.click();
         calendarComponent.setDate(day, month, year);
         return this;
