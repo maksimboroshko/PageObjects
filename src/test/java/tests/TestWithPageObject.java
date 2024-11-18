@@ -3,6 +3,8 @@ import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import utils.RandomUtils;
 
+import java.io.File;
+
 public class TestWithPageObject extends TestBase {
     RegistrationPage registrationPage =
             new RegistrationPage();
@@ -26,8 +28,7 @@ public class TestWithPageObject extends TestBase {
 
     @Test
     void successfulRegistrationTest() {
-        registrationPage.openPage()
-                .removeBanners()
+        registrationPage
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setEmail(emailAddress)
@@ -53,14 +54,14 @@ public class TestWithPageObject extends TestBase {
         registrationPage.getResultsTableComponent().checkResult("Date of Birth", day + " " + month + "," + year);
         registrationPage.getResultsTableComponent().checkResult("Subjects", subject);
         registrationPage.getResultsTableComponent().checkResult("Hobbies", hobbie);
-        registrationPage.getResultsTableComponent().checkResult("Picture", picture);
+        registrationPage.getResultsTableComponent().checkResult("Picture", new File(picture).getName());
         registrationPage.getResultsTableComponent().checkResult("Address", adress);
         registrationPage.getResultsTableComponent().checkResult("State and City", state + " " + city);
     }
 
     @Test
     void minCountPositiveTest (){
-        registrationPage.openPage()
+        registrationPage
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setGender(gender)
@@ -75,7 +76,7 @@ public class TestWithPageObject extends TestBase {
     }
     @Test
     void negaitiveTest (){
-        registrationPage.openPage()
+        registrationPage
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setGender(gender)

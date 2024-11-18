@@ -66,8 +66,8 @@ public class RandomUtils {
         return switch (state) {
             case "NCR" -> faker.options().option("Delhi", "Gurgaon", "Noida");
             case "Uttar Pradesh" -> faker.options().option("Lucknow", "Merrut", "Agra");
-            case "Haryana" -> faker.options().option("Panipap", "Karnal");
-            case "Rajasthan" -> faker.options().option("Jaipur", "Jaisalmer");
+            case "Haryana" -> faker.options().option("Panipat", "Karnal");
+            case "Rajasthan" -> faker.options().option("Jaipur", "Jaiselmer");
             default -> "";
         };
     }
