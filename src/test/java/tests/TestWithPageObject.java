@@ -1,4 +1,5 @@
 package tests;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import utils.RandomUtils;
@@ -27,6 +28,7 @@ public class TestWithPageObject extends TestBase {
 
 
     @Test
+    @Tag("simple")
     void successfulRegistrationTest() {
         registrationPage
                 .setFirstName(firstName)
@@ -85,3 +87,4 @@ public class TestWithPageObject extends TestBase {
         registrationPage.getResultsTableComponent().checkResultNegative();
     }
 }
+
