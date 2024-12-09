@@ -15,7 +15,7 @@ public class TestBase {
         Configuration.headless = true; // Headless режим для сервера Jenkins
         Configuration.browserSize = "1920x1080";
         Configuration.pageLoadStrategy = "eager"; // Можно также попробовать "normal"
-        Configuration.timeout = 5000;
+        Configuration.timeout = 5001;
     }
 
     @BeforeEach
