@@ -3,6 +3,10 @@ plugins {
     id 'io.qameta.allure' version '2.12.0'
 }
 
+repositories {
+    mavenCentral()
+}
+
 def allureVersion = "2.29.0"
 
 allure {
@@ -19,26 +23,13 @@ allure {
     }
 }
 
-repositories {
-    mavenCentral()
-}
-
-compileTestJava {
-    options.encoding = 'UTF-8'
-}
-
 dependencies {
-    testImplementation 'com.codeborne:selenide:7.5.1'
+    testImplementation 'com.codeborne:selenide:5.25.0'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.11.2'
-    testImplementation 'com.github.javafaker:javafaker:1.0.2'
     testImplementation 'org.slf4j:slf4j-simple:2.0.16'
-    testImplementation 'com.codeborne:pdf-test:1.9.1'
-    testImplementation 'com.codeborne:xls-test:1.4.3'
-    testImplementation 'com.opencsv:opencsv:5.9'
-    testImplementation 'com.google.code.gson:gson:2.11.0'
-    testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.18.1'
-    testImplementation 'com.fasterxml.jackson.core:jackson-core:2.18.1'
-    testImplementation "io.qameta.allure:allure-selenide:$allureVersion"
+    testImplementation 'com.github.javafaker:javafaker:1.0.2'
+    testImplementation 'io.github.bonigarcia:webdrivermanager:5.9.2'
+
 }
 
 tasks.withType(Test) {
@@ -49,12 +40,18 @@ tasks.withType(Test) {
             exceptionFormat "short"
         }
     }
-    systemProperties(System.getProperties())
 }
-
 
 task jenkins_test(type: Test) {
     useJUnitPlatform {
         includeTags ("simple")
+        excludeTags("other")
     }
 }
+
+// Добавляем настройку для JDK 11
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+

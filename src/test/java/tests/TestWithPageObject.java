@@ -1,4 +1,5 @@
 package tests;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
@@ -28,6 +29,7 @@ public class TestWithPageObject extends TestBase {
 
 
     @Test
+    @Step("Ввод данных в форму регистрации")
     @Tag("simple")
     void successfulRegistrationTest() {
         registrationPage
@@ -62,6 +64,7 @@ public class TestWithPageObject extends TestBase {
     }
 
     @Test
+    @Tag("other")
     void minCountPositiveTest (){
         registrationPage
                 .setFirstName(firstName)
@@ -77,6 +80,7 @@ public class TestWithPageObject extends TestBase {
         registrationPage.getResultsTableComponent().checkResult("Mobile", subscriberNumber);
     }
     @Test
+    @Tag("other")
     void negaitiveTest (){
         registrationPage
                 .setFirstName(firstName)
