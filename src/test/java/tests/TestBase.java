@@ -12,7 +12,7 @@ public class TestBase {
     static void setup() {
         Configuration.baseUrl = "https://demoqa.com/";
         Configuration.browser = "chrome"; // Укажите браузер
-        Configuration.headless = false; // Headless режим для сервера Jenkins
+        Configuration.headless = true; // Headless режим для сервера Jenkins
         Configuration.browserSize = "1920x1080";
         Configuration.pageLoadStrategy = "eager"; // Можно также попробовать "normal"
         Configuration.timeout = 5000;
