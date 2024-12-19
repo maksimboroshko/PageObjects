@@ -1,4 +1,5 @@
 package tests;
+
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import helpers.Attach;
@@ -11,24 +12,32 @@ import pages.RegistrationPage;
 
 import java.util.Map;
 
-
 public class TestBase {
     RegistrationPage registrationPage;
+
     @BeforeAll
     static void beforeAll() {
-        Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
-        Configuration.browser = System.getProperty("browserName", "chrome");
+        // Настройки конфигурации браузера из параметров Jenkins
+        Configuration.browser = System.getProperty("browserName", "chrome"); // Браузер (например, chrome)
+        Configuration.browserVersion = System.getProperty("browserVersion", "126"); // Версия браузера
+        Configuration.browserSize = System.getProperty("browserSize", "1920x1080"); // Разрешение экрана
+        Configuration.remote = System.getProperty("remoteUrl", "https://selenoid.autotests.cloud/wd/hub"); // URL удалённого браузера
+
+        // Другие настройки
         Configuration.pageLoadStrategy = "eager";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.timeout = 6000;
-        Configuration.remote = System.getProperty("remoteUrl");
-        Configuration.browserVersion = System.getProperty("browserVersion");
+
+        // Возможности удалённого браузера
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-                "enableVNC", true,
-                "enableVideo", true
+                "enableVNC", true,  // Включение видео
+                "enableVideo", true // Включение VNC
         ));
         Configuration.browserCapabilities = capabilities;
+
+        // Логирование для Allure
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
     @BeforeEach
@@ -38,7 +47,7 @@ public class TestBase {
     }
 
     @AfterEach
-    void addAtachments (){
+    void addAttachments() {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
