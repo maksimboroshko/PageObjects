@@ -24,15 +24,14 @@ public class TestBase {
         Configuration.remote = System.getProperty("remoteUrl", "https://selenoid.autotests.cloud/wd/hub"); // URL удалённого браузера
 
         // Другие настройки
-        Configuration.pageLoadStrategy = "eager";
+        Configuration.pageLoadStrategy = "normal";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.timeout = 6000;
 
-        // Возможности удалённого браузера
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-                "enableVNC", true,  // Включение видео
-                "enableVideo", true // Включение VNC
+                "enableVNC", true,
+                "enableVideo", true
         ));
         Configuration.browserCapabilities = capabilities;
 
