@@ -15,15 +15,14 @@ import java.util.Map;
 public class TestBase {
     RegistrationPage registrationPage;
     @BeforeAll
-    static void setup() {
-        Configuration.baseUrl = "https://demoqa.com/";
-        String browser = System.getProperty("browser");
-        Configuration.headless = true; 
-        Configuration.browserSize = "1920x1080";
+    static void beforeAll() {
+        Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
+        Configuration.browser = System.getProperty("browserName", "chrome");
         Configuration.pageLoadStrategy = "eager";
-        Configuration.timeout = 5000;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+        Configuration.baseUrl = "https://demoqa.com";
+        Configuration.timeout = 6000;
+        Configuration.remote = System.getProperty("remoteUrl");
+        Configuration.browserVersion = System.getProperty("browserVersion");
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true,
