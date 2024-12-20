@@ -31,7 +31,7 @@ public class RegistrationPage {
     ResultsTableComponent resultsTableComponent = new ResultsTableComponent();
 
     public RegistrationPage openPage() {
-        open("automation-practice-form");
+        open("/automation-practice-form");
         return this;
     }
 
