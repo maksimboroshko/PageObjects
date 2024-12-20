@@ -21,7 +21,7 @@ public class TestBase {
         Configuration.browser = System.getProperty("browserName", "chrome"); // Браузер (например, chrome)
         Configuration.browserVersion = System.getProperty("browserVersion", "126"); // Версия браузера
         Configuration.browserSize = System.getProperty("browserSize", "1920x1080"); // Разрешение экрана
-        Configuration.remote = System.getProperty("remoteUrl", "https://user1:1234@selenoid.autotests.cloud/wd/hub"); // URL удалённого браузера с логином и паролем
+        Configuration.remote = System.getProperty("remoteUrl"); // URL удалённого браузера с логином и паролем
         // Другие настройки
         Configuration.pageLoadStrategy = "normal";
         Configuration.baseUrl = "https://demoqa.com";
