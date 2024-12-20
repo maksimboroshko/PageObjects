@@ -18,9 +18,9 @@ public class TestBase {
     @BeforeAll
     static void beforeAll() {
         // Настройки конфигурации браузера из параметров Jenkins
-        Configuration.browser = System.getProperty("browserName", "chrome"); // Браузер (например, chrome)
-        Configuration.browserVersion = System.getProperty("browserVersion", "126"); // Версия браузера
-        Configuration.browserSize = System.getProperty("browserSize", "1920x1080"); // Разрешение экрана
+        Configuration.browser = System.getProperty("browserName"); // Браузер (например, chrome)
+        Configuration.browserVersion = System.getProperty("browserVersion"); // Версия браузера
+        Configuration.browserSize = System.getProperty("browserSize"); // Разрешение экрана
         Configuration.remote = System.getProperty("remoteUrl"); // URL удалённого браузера с логином и паролем
         // Другие настройки
         Configuration.pageLoadStrategy = "normal";
