@@ -17,14 +17,12 @@ public class TestBase {
 
     @BeforeAll
     static void beforeAll() {
-        // Настройки конфигурации браузера из параметров Jenkins
-        Configuration.browser = System.getProperty("browserName", "chrome"); // Браузер (например, chrome)
-        Configuration.browserVersion = System.getProperty("browserVersion", "126"); // Версия браузера
-        Configuration.browserSize = System.getProperty("browserSize", "1920x1080"); // Разрешение экрана
-        Configuration.remote = System.getProperty("remoteUrl"); // URL удалённого браузера с логином и паролем
-        // Другие настройки
-        Configuration.pageLoadStrategy = "normal";
-        Configuration.baseUrl = "https://demoqa.com";
+            Configuration.baseUrl = "https://demoqa.com/";
+            Configuration.pageLoadStrategy = "eager";
+            Configuration.browser = System.getProperty("browser", "chrome");
+            Configuration.browserVersion = System.getProperty("browserVersion");
+            Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
+            Configuration.remote = System.getProperty("remoteUrl");
         Configuration.timeout = 6000;
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
