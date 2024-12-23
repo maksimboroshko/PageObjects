@@ -88,7 +88,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setState(String state) {
-        setState.click();
+        setState.scrollTo().click();
         setState.$(byText(state)).click();
 
         return this;
