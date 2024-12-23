@@ -78,7 +78,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setHobbies(String value) {
-        setHobbies.$(byText(value)).click();
+        setHobbies.$(byText(value)).scrollTo().click();
         return this;
     }
 
