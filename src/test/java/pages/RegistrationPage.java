@@ -103,7 +103,7 @@ public class RegistrationPage {
 
 
     public RegistrationPage submit() {
-        submit.click();
+        submit.scrollTo().click();
         return this;
     }
 
