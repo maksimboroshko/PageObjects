@@ -17,13 +17,12 @@ public class TestBase {
 
     @BeforeAll
     static void beforeAll() {
-            Configuration.baseUrl = "https://demoqa.com";
-            Configuration.pageLoadStrategy = "eager";
-            Configuration.browser = System.getProperty("browser", "chrome");
-            Configuration.browserVersion = System.getProperty("browserVersion");
-            Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
-            Configuration.remote = System.getProperty("remoteUrl");
-        Configuration.timeout = 6000;
+        Configuration.baseUrl = "https://demoqa.com";
+        Configuration.pageLoadStrategy = "eager";
+        Configuration.browser = System.getProperty("browser", "chrome");
+        Configuration.browserVersion = System.getProperty("browserVersion");
+        Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
+        Configuration.remote = System.getProperty("remoteUrl");
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
@@ -32,7 +31,6 @@ public class TestBase {
         ));
         Configuration.browserCapabilities = capabilities;
 
-        // Логирование для Allure
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
@@ -40,6 +38,7 @@ public class TestBase {
     public void preparation() {
         registrationPage = new RegistrationPage();
         registrationPage.openPage().removeBanners();
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
     @AfterEach

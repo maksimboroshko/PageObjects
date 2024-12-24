@@ -49,9 +49,3 @@ task jenkins_test(type: Test) {
         excludeTags("other")
     }
 }
-
-// Добавляем настройку для JDK 11
-java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
-}
