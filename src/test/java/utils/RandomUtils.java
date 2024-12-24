@@ -29,7 +29,8 @@ public class RandomUtils {
     }
 
     public String generateRandomPicture() {
-        return faker.options().option("images/test.png", "images/test1.png");
+        String picturePath = faker.options().option("images/test.png", "images/test1.png");
+        return picturePath.split("/")[1];
     }
 
     public String generateRandomDay() {
