@@ -1,9 +1,7 @@
 package pages;
-
 import com.codeborne.selenide.SelenideElement;
 import pages.component.CalendarComponent;
 import pages.component.ResultsTableComponent;
-
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 

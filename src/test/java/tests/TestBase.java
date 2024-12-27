@@ -1,5 +1,4 @@
 package tests;
-
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import helpers.Attach;
@@ -9,7 +8,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import pages.RegistrationPage;
-
 import java.util.Map;
 
 public class TestBase {
