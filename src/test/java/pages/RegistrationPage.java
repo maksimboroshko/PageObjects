@@ -40,12 +40,12 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setFirstName(String value) {
-        setFirstName.setValue(value);
+        setFirstName.scrollTo().setValue(value);
         return this;
     }
 
     public RegistrationPage setLastName(String value) {
-        setLastName.setValue(value);
+        setLastName.scrollTo().setValue(value);
         return this;
     }
 
@@ -56,22 +56,22 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setEmail(String value) {
-        setEmail.setValue(value);
+        setEmail.scrollTo().setValue(value);
         return this;
     }
 
     public RegistrationPage setNumber(String value) {
-        setNumber.setValue(value);
+        setNumber.scrollTo().setValue(value);
         return this;
     }
 
     public RegistrationPage setGender(String value) {
-        setGender.$(byText(value)).click();
+        setGender.$(byText(value)).scrollTo().click();
         return this;
     }
 
     public RegistrationPage setSubjects(String value) {
-        setSubjects.setValue(value).pressEnter();
+        setSubjects.scrollTo().setValue(value).pressEnter();
         return this;
     }
 
@@ -81,7 +81,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setAddress(String value) {
-        setAddress.setValue(value);
+        setAddress.scrollTo().setValue(value);
         return this;
     }
 
@@ -93,7 +93,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setCity(String city) {
-        setCity.click();
+        setCity.scrollTo().click();
         setCity.$(byText(city)).click();
 
         return this;
