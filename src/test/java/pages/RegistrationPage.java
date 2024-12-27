@@ -106,7 +106,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setDateOfBirthday(String day, String month, String year) {
-        setCalendar.click();
+        setCalendar.scrollTo().click();
         calendarComponent.setDate(day, month, year);
         return this;
     }
