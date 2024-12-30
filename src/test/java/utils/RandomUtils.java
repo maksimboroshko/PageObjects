@@ -27,8 +27,9 @@ public class RandomUtils {
 
     public String generateRandomPicture() {
         String picturePath = faker.options().option("images/test.png", "images/test1.png");
-        return picturePath.split("/")[1];
+        return picturePath;
     }
+
 
     public String generateRandomDay() {
         return String.valueOf(faker.number().numberBetween(1, 28));
